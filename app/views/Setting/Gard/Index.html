@@ -1,0 +1,53 @@
+{{template "Public/header.html" .}}
+<script language="javascript" src="/public/js/Setting/gard.js"></script>
+
+<body>
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">
+            <a href='javascript:;' class="on"><em>{{msg . "gard_manage"}}</em></a><span>|</span><a
+                href='/Gard/add/'><em>{{msg . "gard_add"}}</em></a>
+        </div>
+    </div>
+
+    <div class="pad_10">
+        <div class="table-list">
+            <table width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th width="10%">ID</th>
+                        <th width="15%" align="left">{{msg . "dict"}}</th>
+                        <th width="25%" align="left">{{msg . "street"}}</th>
+                        <th width="25%" align="left">{{msg . "childrengard"}}</th>
+                        <th width="10%">{{msg . "code"}}</th>
+                        <th width="15%">{{msg . "menu_operation"}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{if .gard_list}}
+                        {{$msg := .}}
+                        {{range $gard_list := .gard_list}}
+                        <tr>
+                            <td align="center">{{$gard_list.Id}}</td>
+                            <td>{{$gard_list.Dict}}</td>
+                            <td>{{$gard_list.Street}}</td>
+                            <td>{{$gard_list.Childrengard}}</td>
+                            
+                            
+                            <td>{{$gard_list.Code}}</td>
+                          
+                            <td class="text-c">
+                                <a href="/Gard/edit/{{$gard_list.Id}}/">{{msg $msg "edit"}}</a> | 
+                                
+                                    <a href="javascript:;" onclick="delete_gard({{$gard_list.Id}})">{{msg $msg "delete"}}</a>
+                                
+                            </td>
+                        </tr>
+                        {{end}}
+                    {{end}}
+                </tbody>
+            </table>
+            <div id="pages">{{.pages}}</div>
+        </div>
+    </div>
+</body>
+{{template "Public/footer.html" .}}

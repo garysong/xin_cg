@@ -1,0 +1,61 @@
+{{template "Public/header.html" .}}
+<script language="javascript" src="/public/js/Setting/gard.js"></script>
+
+<body>
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">
+            <a href='/Gard/'><em>{{msg . "gard_manage"}}</em></a><span>|</span><a
+                href='javascript:;' class="on"><em>{{msg . "gard_add"}}</em></a>
+        </div>
+    </div>
+    <div class="pad_10">
+        <div class="common-form">
+        <form name="myform" action="{{url "Gard.Add"}}" onsubmit="return form_submit()" method="post" 
+            id="myform">
+            <table width="100%" class="table_form contentWrap">
+                <tr>
+                    <td width="80"><strong>{{msg . "dict"}}：</strong></td>
+                    <td>
+                      
+                        <select id="dict" name="dict">
+                            {{range $k, $v := .gard_list}}
+                                <option value="{{$v}}">{{$v}}</option>
+                            {{end}}
+                        </select>
+                        <div id="dictidTip" class=""></div>
+                    
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{msg . "street"}}：</strong></td>
+                    <td>
+                        <input type="text" name="Street" id="Street"
+                        class="input-text"></input>
+                        <div id="streetTip" class=""></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{msg . "childrengard"}}：</strong></td>
+                    <td>
+                        <input type="text" name="Childrengard" id="Childrengard"
+                        class="input-text"></input>
+                        <div id="childrengardTip" class=""></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{msg . "code"}}：</strong></td>
+                    <td>
+                        <input type="text" name="Code" value=""
+                        class="input-text" id="Code" size="12"></input>
+                        <div id="codeTip" class=""></div>
+                    </td>
+                </tr>
+            </table>
+            <div class="bk15"></div>
+            <input type="hidden" name="csrf_token" value="{{ .csrf_token }}" />
+            <input name="dosubmit" type="submit" value="{{msg . "submit"}}" class="button">
+        </form>
+        </div>
+    </div>
+</body>
+{{template "Public/footer.html" .}}
