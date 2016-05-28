@@ -231,7 +231,8 @@ func (a *Admin) Save() bool {
 	admin.Lang = a.Lang
 	admin.Lastlogintime = "0000-00-00 00:00:00"
 	admin.Status = a.Status
-	admin.Createtime = time.Now().Format("2010-01-02 10:10:10")
+	admin.Code = a.Code
+	admin.Createtime = time.Now().Format("2006-01-02 15:04:04")
 
 	has, err := DB_Write.Insert(admin)
 	if err != nil {
@@ -247,7 +248,7 @@ func (a *Admin) UpdateLoginTime(Id int64) bool {
 	admin := new(Admin)
 
 	admin.Lastloginip = a.Lastloginip
-	admin.Lastlogintime = time.Now().Format("2010-01-02 10:10:10")
+	admin.Lastlogintime = time.Now().Format("2006-01-02 15:04:04")
 
 	has, err := DB_Write.Id(Id).Cols("lastloginip", "lastlogintime").Update(admin)
 
@@ -321,6 +322,10 @@ func (a *Admin) Edit(Id int64) bool {
 		admin.Roleid = a.Roleid
 	}
 
+	if len(a.Code) > 0 {
+		admin.Code = a.Code
+	}
+
 	if len(a.Email) > 0 {
 		admin.Email = a.Email
 	}
@@ -336,14 +341,14 @@ func (a *Admin) Edit(Id int64) bool {
 	admin.Status = a.Status
 
 	if len(a.Password) > 0 {
-		has, err := DB_Write.Id(Id).Cols("username", "password", "email", "realname", "roleid", "lang", "status").Update(admin)
+		has, err := DB_Write.Id(Id).Cols("username", "password", "email", "realname", "code", "roleid", "lang", "status").Update(admin)
 		if err != nil {
 			revel.WARN.Println(has)
 			revel.WARN.Printf("错误: %v", err)
 			return false
 		}
 	} else {
-		has, err := DB_Write.Id(Id).Cols("username", "email", "realname", "roleid", "lang", "status").Update(admin)
+		has, err := DB_Write.Id(Id).Cols("username", "email", "realname", "roleid", "code", "lang", "status").Update(admin)
 		if err != nil {
 			revel.WARN.Println(has)
 			revel.WARN.Printf("错误: %v", err)

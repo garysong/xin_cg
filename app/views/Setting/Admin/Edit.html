@@ -54,6 +54,17 @@
                             </td>
                         </tr>
                         <tr>
+                            <td><strong>{{msg . "childrengardname"}}：</strong></td>
+                            <td>
+                                <select id="name" name="name">
+                                    {{range $k, $v :=  .gname_list}}
+                                        <option {{if eq $k $admin_info.Code}}selected{{end}} value="{{$k}}">{{$v}}</option>
+                                    {{end}}
+                                </select>
+                                <div id="nameTip" class=""></div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td><strong>{{msg . "userinrole"}}：</strong></td>
                             <td>
                                 <select id="roleid" name="roleid">

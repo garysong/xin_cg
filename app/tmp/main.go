@@ -5,12 +5,12 @@ import (
 	"flag"
 	"reflect"
 	"github.com/revel/revel"
-	controllers7 "github.com/revel/revel/modules/jobs/app/controllers"
+	controllers8 "github.com/revel/revel/modules/jobs/app/controllers"
 	_ "github.com/revel/revel/modules/jobs/app/jobs"
 	controllers5 "github.com/revel/revel/modules/pprof/app/controllers"
 	controllers6 "github.com/revel/revel/modules/static/app/controllers"
 	_ "github.com/revel/revel/modules/testrunner/app"
-	controllers8 "github.com/revel/revel/modules/testrunner/app/controllers"
+	controllers7 "github.com/revel/revel/modules/testrunner/app/controllers"
 	_ "xin_cg/app"
 	controllers "xin_cg/app/controllers"
 	controllers0 "xin_cg/app/controllers/Basic"
@@ -72,27 +72,114 @@ func main() {
 	revel.RegisterController((*controllers0.Basic)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
+				Name: "Add",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "basic", Type: reflect.TypeOf((**models.Basic)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+					32: []string{ 
+						"title",
+					},
+					35: []string{ 
+						"title",
+						"gardname",
+					},
+					39: []string{ 
+						"title",
+					},
+				},
+			},
+			&revel.MethodType{
 				Name: "Info",
 				Args: []*revel.MethodArg{ 
 					&revel.MethodArg{Name: "basic", Type: reflect.TypeOf((**models.Basic)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					30: []string{ 
+					172: []string{ 
 						"title",
-						"admin_info",
+						"gardname",
 					},
-					33: []string{ 
+					177: []string{ 
 						"title",
 						"admin_info",
 						"basic_info",
+						"gardname",
 					},
-					36: []string{ 
+					180: []string{ 
 						"title",
-						"basic_info",
+						"admin_info",
+						"gardname",
 					},
-					38: []string{ 
+					182: []string{ 
 						"title",
 					},
+				},
+			},
+			
+		})
+	
+	revel.RegisterController((*controllers0.Equipment)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Index",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "equipment", Type: reflect.TypeOf((**models.Equipment)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+					34: []string{ 
+						"title",
+						"equipment_list",
+						"pages",
+						"gardname",
+					},
+					37: []string{ 
+						"title",
+						"equipment_list",
+						"pages",
+						"gardname",
+					},
+				},
+			},
+			&revel.MethodType{
+				Name: "Add",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "equipment", Type: reflect.TypeOf((**models.Equipment)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+					53: []string{ 
+						"title",
+					},
+					56: []string{ 
+						"title",
+						"gardname",
+					},
+				},
+			},
+			&revel.MethodType{
+				Name: "Edit",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "equipment", Type: reflect.TypeOf((**models.Equipment)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+					127: []string{ 
+						"title",
+						"equipment_info",
+						"gardname",
+					},
+					130: []string{ 
+						"title",
+					},
+					133: []string{ 
+						"title",
+					},
+				},
+			},
+			&revel.MethodType{
+				Name: "Delete",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "equipment", Type: reflect.TypeOf((**models.Equipment)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
 				},
 			},
 			
@@ -220,12 +307,12 @@ func main() {
 					&revel.MethodArg{Name: "admin", Type: reflect.TypeOf((**models.Admin)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					29: []string{ 
+					30: []string{ 
 						"title",
 						"admin_list",
 						"pages",
 					},
-					33: []string{ 
+					34: []string{ 
 						"title",
 						"admin_list",
 						"pages",
@@ -238,9 +325,10 @@ func main() {
 					&revel.MethodArg{Name: "admin", Type: reflect.TypeOf((**models.Admin)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					48: []string{ 
+					50: []string{ 
 						"title",
 						"role_list",
+						"gname_list",
 					},
 				},
 			},
@@ -250,14 +338,16 @@ func main() {
 					&revel.MethodArg{Name: "admin", Type: reflect.TypeOf((**models.Admin)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					213: []string{ 
+					227: []string{ 
 						"title",
 						"admin_info",
 						"role_list",
+						"gname_list",
 					},
-					215: []string{ 
+					229: []string{ 
 						"title",
 						"role_list",
+						"gname_list",
 					},
 				},
 			},
@@ -680,22 +770,7 @@ func main() {
 			
 		})
 	
-	revel.RegisterController((*controllers7.Jobs)(nil),
-		[]*revel.MethodType{
-			&revel.MethodType{
-				Name: "Status",
-				Args: []*revel.MethodArg{ 
-				},
-				RenderArgNames: map[int][]string{ 
-					19: []string{ 
-						"entries",
-					},
-				},
-			},
-			
-		})
-	
-	revel.RegisterController((*controllers8.TestRunner)(nil),
+	revel.RegisterController((*controllers7.TestRunner)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",
@@ -728,6 +803,21 @@ func main() {
 			
 		})
 	
+	revel.RegisterController((*controllers8.Jobs)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Status",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+					19: []string{ 
+						"entries",
+					},
+				},
+			},
+			
+		})
+	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
 		"xin_cg/app/models.(*Admin).Validate": { 
 			33: "a.Username",
@@ -738,7 +828,10 @@ func main() {
 			64: "a.Password",
 		},
 		"xin_cg/app/models.(*Basic).Validate": { 
-			37: "a.Code",
+			38: "a.Code",
+		},
+		"xin_cg/app/models.(*Equipment).Validate": { 
+			20: "a.Code",
 		},
 		"xin_cg/app/models.(*Gard).Validate": { 
 			19: "a.Dict",

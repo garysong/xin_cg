@@ -1,6 +1,7 @@
 package controllers
 
 //初始化入口文件
+//import "strings"
 import "runtime"
 import "strconv"
 import "path/filepath"
@@ -9,14 +10,10 @@ import "github.com/revel/revel"
 import "github.com/revel/revel/modules/jobs/app/jobs"
 import "xin_cg/app/models"
 
-type Name struct {
-	Dict         string
-	Street       string
-	Childrengard string
-}
-
 var BasePath, _ = filepath.Abs("")
 var Code2Name = utils.NewBeeMap()
+
+var C2N map[string]string = make(map[string]string)
 
 //定义项目根目录
 var ROOT_DIR string = BasePath
@@ -175,12 +172,40 @@ func GetAllCGCode() {
 	gard := new(models.Gard)
 	gard_list, _ := gard.GetByAll(0, 10000)
 
-	revel.WARN.Println(gard_list)
 	for _, g := range gard_list {
-		n := new(Name)
-		n.Dict = g.Dict
-		n.Street = g.Street
-		n.Childrengard = g.Childrengard
+		n := ""
+		split := "_"
+		if len(g.Dict) > 0 {
+			n = n + g.Dict
+		}
+		if len(g.Street) > 0 {
+			n = n + split + g.Street
+		}
+		if len(g.Childrengard) > 0 {
+			n = n + split + g.Childrengard
+		}
+
 		Code2Name.Set(g.Code, n)
+		if value, ok := C2N[g.Code]; ok {
+			if value != n {
+				C2N[g.Code] = n
+			}
+		} else {
+			C2N[g.Code] = n
+		}
+
 	}
+	revel.WARN.Println(C2N)
+}
+
+func GetCodeByName(name string) string {
+	for k, v := range C2N {
+		if v == name {
+			return k
+		}
+	}
+	return ""
+}
+func GetNameByCode(code string) string {
+	return C2N[code]
 }

@@ -5,6 +5,7 @@ import "strings"
 import "strconv"
 import "github.com/revel/revel"
 import "xin_cg/app/models"
+import "xin_cg/app/controllers"
 
 type Admin struct {
 	*revel.Controller
@@ -44,8 +45,9 @@ func (c Admin) Add(admin *models.Admin) revel.Result {
 
 		role := new(models.Role)
 		role_list := role.GetRoleList()
+		gname_list := controllers.C2N
 
-		c.Render(title, role_list)
+		c.Render(title, role_list, gname_list)
 		return c.RenderTemplate("Setting/Admin/Add.html")
 	} else {
 
@@ -115,6 +117,17 @@ func (c Admin) Add(admin *models.Admin) revel.Result {
 			admin.Lang = lang
 		} else {
 			c.Flash.Error("请选择语言!")
+			c.Flash.Out["url"] = "/Admin/Add/"
+			return c.Redirect("/Message/")
+		}
+
+		var gname string = c.Params.Get("name")
+		if len(gname) > 0 {
+
+			admin.Code = gname
+			revel.WARN.Println(gname)
+		} else {
+			c.Flash.Error("请选择地区，街道或幼儿园!")
 			c.Flash.Out["url"] = "/Admin/Add/"
 			return c.Redirect("/Message/")
 		}
@@ -199,6 +212,7 @@ func (c Admin) Edit(admin *models.Admin) revel.Result {
 
 		role := new(models.Role)
 		role_list := role.GetRoleList()
+		gname_list := controllers.C2N
 
 		var id string = c.Params.Get("id")
 
@@ -210,9 +224,9 @@ func (c Admin) Edit(admin *models.Admin) revel.Result {
 
 			admin_info := admin.GetById(Id)
 
-			c.Render(title, admin_info, role_list)
+			c.Render(title, admin_info, role_list, gname_list)
 		} else {
-			c.Render(title, role_list)
+			c.Render(title, role_list, gname_list)
 		}
 
 		return c.RenderTemplate("Setting/Admin/Edit.html")
@@ -273,6 +287,17 @@ func (c Admin) Edit(admin *models.Admin) revel.Result {
 			} else {
 				c.Flash.Error("请选择语言!")
 				c.Flash.Out["url"] = "/Admin/Edit/" + id + "/"
+				return c.Redirect("/Message/")
+			}
+
+			var gname string = c.Params.Get("name")
+			if len(gname) > 0 {
+
+				admin.Code = gname
+				revel.WARN.Println(gname)
+			} else {
+				c.Flash.Error("请选择地区，街道或幼儿园!")
+				c.Flash.Out["url"] = "/Admin/Add/"
 				return c.Redirect("/Message/")
 			}
 

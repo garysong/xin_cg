@@ -31,6 +31,15 @@ type tBasic struct {}
 var Basic tBasic
 
 
+func (_ tBasic) Add(
+		basic interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "basic", basic)
+	return revel.MainRouter.Reverse("Basic.Add", args).Url
+}
+
 func (_ tBasic) Info(
 		basic interface{},
 		) string {
@@ -38,6 +47,47 @@ func (_ tBasic) Info(
 	
 	revel.Unbind(args, "basic", basic)
 	return revel.MainRouter.Reverse("Basic.Info", args).Url
+}
+
+
+type tEquipment struct {}
+var Equipment tEquipment
+
+
+func (_ tEquipment) Index(
+		equipment interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "equipment", equipment)
+	return revel.MainRouter.Reverse("Equipment.Index", args).Url
+}
+
+func (_ tEquipment) Add(
+		equipment interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "equipment", equipment)
+	return revel.MainRouter.Reverse("Equipment.Add", args).Url
+}
+
+func (_ tEquipment) Edit(
+		equipment interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "equipment", equipment)
+	return revel.MainRouter.Reverse("Equipment.Edit", args).Url
+}
+
+func (_ tEquipment) Delete(
+		equipment interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "equipment", equipment)
+	return revel.MainRouter.Reverse("Equipment.Delete", args).Url
 }
 
 
@@ -481,18 +531,6 @@ func (_ tStatic) ServeModule(
 }
 
 
-type tJobs struct {}
-var Jobs tJobs
-
-
-func (_ tJobs) Status(
-		) string {
-	args := make(map[string]string)
-	
-	return revel.MainRouter.Reverse("Jobs.Status", args).Url
-}
-
-
 type tTestRunner struct {}
 var TestRunner tTestRunner
 
@@ -520,6 +558,18 @@ func (_ tTestRunner) List(
 	args := make(map[string]string)
 	
 	return revel.MainRouter.Reverse("TestRunner.List", args).Url
+}
+
+
+type tJobs struct {}
+var Jobs tJobs
+
+
+func (_ tJobs) Status(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Jobs.Status", args).Url
 }
 
 

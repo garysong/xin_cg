@@ -179,6 +179,7 @@ admin_cancel_succ=管理员撤销成功
 parameters_error=参数不完整
 username_illegal=用户名不合法
 email_illegal=email不合法
+childrengardname=幼儿园名称
 
 password_edit_succ_logout=密码修改该成功,请使用新密码重新登录
 old_password=旧密码
@@ -207,6 +208,40 @@ dict=区
 street=街道
 childrengard=幼儿园
 code=编码
+
+#基本信息
+basicinfo=基本信息
+basic_add=添加基本信息
+address=地址
+lawpresent=法定代表人
+lawpresentphone=法定代表人电话
+director=主管负责人（园长）
+directorphone=园长联系电话
+contactor=联系人
+contactorphone=联系人电话
+capital=注册资金（万元）
+fax=传 真
+pastalcode=邮政编码
+floorarea=占地面积（m2）
+builtarea=建筑面积（m2）
+outerarea=室外活动场地（m2）
+staffnum=教职工人数
+childrennum=学生人数
+classesnum=班级数量
+securitynum=安全管理人数
+educationattri=办学性质
+E-mail=电子信箱
+secrityinstitution=主要安全管理制度
+
+#消防设施
+equipmentinfo=消防设备管理
+equipment_manage=消防设备管理
+equipment_add=添加
+equipment_code=幼儿园名称
+equipment_name=设备名称
+equipment_model=型号规格
+equipment_num=数量
+equipment_status=状况
 
 #登陆
 login_user_name=请填写用户名

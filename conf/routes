@@ -46,7 +46,12 @@ GET     /Gard/:page/                            Gard.Index
 GET     /BasicInfo/                             Basic.Info
 POST    /BasicInfo/                             Basic.Info
 
-
+#幼儿园消防设备管理
+GET     /Equipment/                             Equipment.Index
+GET     /Equipment/add/                         Equipment.Add
+GET     /Equipment/edit/:id/                    Equipment.Edit
+POST    /Equipment/delete/                      Equipment.Delete
+GET     /Equipment/:page/                       Equipment.Index
 
 #日志管理
 GET     /Logs/                                  Logs.Index

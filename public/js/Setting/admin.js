@@ -66,6 +66,13 @@ function form_submit() {
 		return false;
 	}
 
+	var name = $.trim($("#name").val());
+	if (name == '') {
+		$("#name").addClass("onFocus").focus();
+		$("#nameTip").addClass("onError").html("请输入幼儿园名称!");
+		return false;
+	}
+
 	var roleid = $.trim($("#roleid").val());
 	if (roleid == '') {
 		$("#roleid").addClass("onFocus").focus();
@@ -108,6 +115,13 @@ function form_edit_submit() {
 		return false;
 	}
 
+	var name = $.trim($("#name").val());
+	if (name == '') {
+		$("#name").addClass("onFocus").focus();
+		$("#nameTip").addClass("onError").html("请输入幼儿园名称!");
+		return false;
+	}
+	
 	var roleid = $.trim($("#roleid").val());
 	if (roleid == '') {
 		$("#roleid").focus();

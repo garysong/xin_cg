@@ -35,6 +35,7 @@
                 {{msg . "hello"}}{{$admin_info.Username}} [{{$admin_info.Role.Rolename}}]<span>|</span>
                 <a href="javascript:;" onclick="Logout()">[{{msg . "exit"}}]</a><span>|</span>
                 <a href="/Search/" target="right" id="site_search">{{msg . "search"}}</a>
+                
             </div>
             <ul class="nav white" id="top_menu">
                 {{if .menus}} {{$controller := .Controller}}

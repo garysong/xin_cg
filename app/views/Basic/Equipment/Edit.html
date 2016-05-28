@@ -1,0 +1,63 @@
+{{template "Public/header.html" .}}
+<script language="javascript" src="/public/js/Basic/equipment.js"></script>
+
+<body>
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">
+            <a href='javascript:;' class="on"><em>{{msg . "equipment_edit"}}</em></a>
+        </div>
+    </div>
+    <div class="pad_10">
+        <div class="common-form">
+            <form name="myform" action="{{url "Equipment.edit"}}" method="post" onsubmit="return form_submit()" id="myform">
+                {{if .equipment_info}} {{$equipment_info := .equipment_info}}
+                <table width="100%" class="table_form contentWrap">
+                    <tr>
+                        <td width="160"><strong>{{msg . "childrengard"}}：</strong></td>
+                        <td>{{.gardname}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "equipment_name"}}：</strong></td>
+                        <td>
+                            <input type="text" name="name" id="name" class="input-text" size="30" value="{{$equipment_info.Name}}"></input>
+                            <div id="nameTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "equipment_model"}}：</strong></td>
+                        <td>
+                            <input type="text" name="model" id="model" class="input-text" size="30" value="{{$equipment_info.Model}}"></input>
+                            <div id="modelTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "equipment_num"}}：</strong></td>
+                        <td>
+                            <input type="text" name="num" id="num" class="input-text" size="30" value="{{$equipment_info.Num}}"></input>
+                            <div id="numTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "equipment_status"}}：</strong></td>
+                        <td>
+                            <input type="text" name="status" id="status" class="input-text" size="30" value="{{$equipment_info.Status}}"></input>
+                            <div id="statusTip" class=""></div>
+                        </td>
+                    </tr>
+                    
+                   
+                    
+        
+                </table>
+               
+                <div class="bk15"></div>
+                <input type="hidden" name="csrf_token" value="{{ .csrf_token }}" />
+                <input type="hidden" id="id" name="id" value="{{$equipment_info.Id}}"></input>
+                
+                <input name="dosubmit" type="submit" value="{{msg . "submit"}}" class="button" id="dosubmit">
+            </form>
+             {{end}}
+        </div>
+    </div>
+</body>
+{{template "Public/footer.html" .}}

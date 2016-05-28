@@ -9,28 +9,29 @@ import "time"
 import "github.com/revel/revel"
 
 type Basic struct {
-	Id                  int64  `xorm:"pk autoincr"`
-	Code                string `xorm:"varchar(32)"`
-	Lawpresent          string `xorm:"varchar(32)"`
-	Lawpresentphone     string `xorm:"varchar(32)"`
-	Director            string `xorm:"varchar(32)"`
-	Directorphone       string `xorm:"varchar(32)"`
-	Contactor           string `xorm:"varchar(32)"`
-	Contactorphone      string `xorm:"varchar(32)"`
-	Capital             string `xorm:"varchar(32)"`
-	Fax                 string `xorm:"varchar(32)"`
-	Pastalcode          string `xorm:"varchar(32)"`
-	Floorarea           string `xorm:"varchar(32)"`
-	Builtarea           string `xorm:"varchar(32)"`
-	Outerarea           string `xorm:"varchar(32)"`
-	Staffnum            string `xorm:"varchar(32)"`
-	Childrennum         string `xorm:"varchar(32)"`
-	Classesnum          string `xorm:"varchar(32)"`
-	Securitynum         string `xorm:"varchar(32)"`
-	Educationattri      string `xorm:"varchar(32)"`
-	Email               string `xorm:"varchar(64)"`
-	Securityinstitution string `xorm:"text"`
-	Createtime          string `xorm:"DateTime"`
+	Id                  int64   `xorm:"pk autoincr"`
+	Code                string  `xorm:"varchar(32)"`
+	Address             string  `xorm:"varchar(64)"`
+	Lawpresent          string  `xorm:"varchar(32)"`
+	Lawpresentphone     string  `xorm:"varchar(32)"`
+	Director            string  `xorm:"varchar(32)"`
+	Directorphone       string  `xorm:"varchar(32)"`
+	Contactor           string  `xorm:"varchar(32)"`
+	Contactorphone      string  `xorm:"varchar(32)"`
+	Capital             float64 `xorm:"float(10,2)"`
+	Fax                 string  `xorm:"varchar(32)"`
+	Pastalcode          string  `xorm:"varchar(32)"`
+	Floorarea           float64 `xorm:"float(10,2)"`
+	Builtarea           float64 `xorm:"float(10,2)"`
+	Outerarea           float64 `xorm:"float(10,2)"`
+	Staffnum            int64   `xorm:"int(11)"`
+	Childrennum         int64   `xorm:"int(11)"`
+	Classesnum          int64   `xorm:"int(11)"`
+	Securitynum         int64   `xorm:"int(11)"`
+	Educationattri      string  `xorm:"varchar(32)"`
+	Email               string  `xorm:"varchar(64)"`
+	Securityinstitution string  `xorm:"text"`
+	Createtime          string  `xorm:"DateTime"`
 }
 
 func (a *Basic) Validate(v *revel.Validation) {
@@ -87,6 +88,7 @@ func (a *Basic) Save() bool {
 	basic := new(Basic)
 
 	basic.Code = a.Code
+	basic.Address = a.Address
 	basic.Lawpresent = a.Lawpresent
 	basic.Lawpresentphone = a.Lawpresentphone
 	basic.Director = a.Director
@@ -120,6 +122,7 @@ func (a *Basic) Save() bool {
 func (a *Basic) Edit(Id int64) bool {
 	basic := new(Basic)
 
+	basic.Address = a.Address
 	basic.Lawpresent = a.Lawpresent
 	basic.Lawpresentphone = a.Lawpresentphone
 	basic.Director = a.Director
@@ -140,7 +143,7 @@ func (a *Basic) Edit(Id int64) bool {
 	basic.Email = a.Email
 	basic.Securityinstitution = a.Securityinstitution
 
-	has, err := DB_Write.Id(Id).Cols("Lawpresent", "Lawpresentphone", "Director", "Directorphone", "Contactor", "Contactorphone", "Capital", "Fax", "Pastalcode", "Floorarea", "Builtarea", "Outerarea", "Staffnum", "Childrennum", "Classesnum", "Securitynum", "EducationAttri", "Email", "Securityinstitution").Update(basic)
+	has, err := DB_Write.Id(Id).Cols("Address", "Lawpresent", "Lawpresentphone", "Director", "Directorphone", "Contactor", "Contactorphone", "Capital", "Fax", "Pastalcode", "Floorarea", "Builtarea", "Outerarea", "Staffnum", "Childrennum", "Classesnum", "Securitynum", "EducationAttri", "Email", "Securityinstitution").Update(basic)
 
 	if err != nil {
 		revel.WARN.Println(has)

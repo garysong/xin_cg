@@ -1,0 +1,172 @@
+{{template "Public/header.html" .}}
+<script language="javascript" src="/public/js/Basic/basic.js"></script>
+
+<body>
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">
+            <a href='/Basic/'><em>{{msg . "basicinfo"}}</em></a><span>|</span><a
+                href='javascript:;' class="on"><em>{{msg . "basic_add"}}</em></a>
+        </div>
+    </div>
+
+    <div class="pad_10">
+        <div class="common-form">
+        <form name="myform" action="{{url "Basic.Add"}}" onsubmit="return form_submit()" method="post" 
+            id="myform">
+            <table width="100%" class="table_form contentWrap">
+                <tr>
+                        <td width="160"><strong>{{msg . "childrengard"}}：</strong></td>
+                        <td>{{.gardname}}</td>
+                        <input type="hidden" name="code" id="code" value="{{.gardname}}" />
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "address"}}：</strong></td>
+                        <td>
+                            <input type="text" name="address" id="address" class="input-text" size="30"></input>
+                            <div id="addressTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "lawpresent"}}：</strong></td>
+                        <td>
+                            <input type="text" name="lawpresent" id="lawpresent" class="input-text" size="30"></input>
+                            <div id="lawpresentTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "lawpresentphone"}}：</strong></td>
+                        <td>
+                            <input type="text" name="lawpresentphone" id="lawpresentphone" class="input-text" size="30"></input>
+                            <div id="lawpresentphoneTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "director"}}：</strong></td>
+                        <td>
+                            <input type="text" name="director" id="director" class="input-text" size="30"></input>
+                            <div id="directorTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "directorphone"}}：</strong></td>
+                        <td>
+                            <input type="text" name="directorphone" id="directorphone" class="input-text" size="30"></input>
+                            <div id="directorphoneTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "contactor"}}：</strong></td>
+                        <td>
+                            <input type="text" name="contactor" id="contactor" class="input-text" size="30"></input>
+                            <div id="contactorTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "contactorphone"}}：</strong></td>
+                        <td>
+                            <input type="text" name="contactorphone" id="contactorphone" class="input-text" size="30"></input>
+                            <div id="contactorphoneTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "capital"}}：</strong></td>
+                        <td>
+                            <input type="text" name="capital" id="capital" class="input-text" size="30"></input>
+                            <div id="capitalTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "fax"}}：</strong></td>
+                        <td>
+                            <input type="text" name="fax" id="fax" class="input-text" size="30"></input>
+                            <div id="faxTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "pastalcode"}}：</strong></td>
+                        <td>
+                            <input type="text" name="pastalcode" id="pastalcode" class="input-text" size="30"></input>
+                            <div id="pastalcodeaxTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "floorarea"}}：</strong></td>
+                        <td>
+                            <input type="text" name="floorarea" id="floorarea" class="input-text" size="30"></input>
+                            <div id="floorareaTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "builtarea"}}：</strong></td>
+                        <td>
+                            <input type="text" name="builtarea" id="builtarea" class="input-text" size="30"></input>
+                            <div id="builtareaTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "outerarea"}}：</strong></td>
+                        <td>
+                            <input type="text" name="outerarea" id="outerarea" class="input-text" size="30"></input>
+                            <div id="outerareaTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "staffnum"}}：</strong></td>
+                        <td>
+                            <input type="text" name="staffnum" id="staffnum" class="input-text" size="30"></input>
+                            <div id="staffnumTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "childrennum"}}：</strong></td>
+                        <td>
+                            <input type="text" name="childrennum" id="childrennum" class="input-text" size="30"></input>
+                            <div id="childrennumTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "classesnum"}}：</strong></td>
+                        <td>
+                            <input type="text" name="classesnum" id="classesnum" class="input-text" size="30"></input>
+                            <div id="classesnumTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "securitynum"}}：</strong></td>
+                        <td>
+                            <input type="text" name="securitynum" id="securitynum" class="input-text" size="30"></input>
+                            <div id="securitynumTip" class=""></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>{{msg . "educationattri"}}：</strong></td>
+                        <td>
+                            <input type="radio" name="educationattri" checked value="公办">公办
+                            <input type="radio" name="educationattri"  value="民办"> 民办
+                            <input type="radio" name="educationattri" value="其它"> 其它
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>{{msg . "email"}}：</strong></td>
+                        <td>
+                            <input type="text" name="email" id="email" class="input-text" size="30"></input>
+                            <div id="emailTip" class=""></div>
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td><strong>{{msg . "secrityinstitution"}}：</strong></td>
+                        <td>
+                            <input type="text" name="secrityinstitution" id="secrityinstitution" class="input-text" size="30"></input>
+                            <div id="secrityinstitutionTip" class=""></div>
+                        </td>
+                    </tr>
+            </table>
+            <div class="bk15"></div>
+            <input type="hidden" name="csrf_token" value="{{ .csrf_token }}" />
+            <input name="dosubmit" type="submit" value="{{msg . "submit"}}" class="button">
+        </form>
+        </div>
+    </div>
+</body>
